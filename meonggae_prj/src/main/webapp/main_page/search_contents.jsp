@@ -31,34 +31,28 @@
 <!-- header 시작 -->
 <jsp:include page="../header/header.jsp" />
 <!-- header 끝 -->
-<div class="contents">
-        <div class="container">
-		<!-- 캐러셀 시작 -->
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
-			<!-- 슬라이드 -->
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="../common/images/banner-1.png" alt="광고1">
-				</div>
-				<div class="item">
-					<img src="../common/images/banner-2.png" alt="광고2">
-				</div>
-				<div class="item">
-					<img src="../common/images/banner-3.png" alt="광고3">
-				</div>
-			</div>
-			<!-- 좌우 버튼 -->
-			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> 
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a> 
-			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> 
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
+<div class="container">
+	<div class="row">
+		<div class="products_categoryNavigation">
+			<span>전체</span> 
+			<span> > </span> 
+			<select id="proCate-parent" name="proCate-parent">
+				<option value="여성의류">여성의류</option>
+				<option value="남성의류">남성의류</option>
+				<option value="신발">신발</option>
+				<option value="가방/지갑">가방/지갑</option>
+				<option value="스타굿즈">스타굿즈</option>
+			</select> 
+			<span> > </span> 
+			<select id="proCate-child" name="proCate-child">
+				<option value="상의">상의</option>
+				<option value="바지">바지</option>
+				<option value="치마">치마</option>
+				<option value="원피스">원피스</option>
+			</select>
 		</div>
-		<!-- 캐러셀 끝 -->
 	</div>
+</div>
 
     <div class="featured-items">
 
@@ -97,8 +91,6 @@
 		</div>
 
 	</div>
-
-</div>
-<!-- footer 시작 -->
-<jsp:include page="../footer/footer.jsp" />
-<!-- footer 끝 -->
+<!-- footer include 시작 -->
+	<jsp:include page="../footer/footer.jsp" />
+<!-- footer include 끝 -->
