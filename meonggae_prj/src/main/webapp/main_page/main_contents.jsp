@@ -75,6 +75,7 @@
                             	<div class="single-product">
                             		<div class="product-block">
                             			<a href="products_detail.jsp">
+                            				<!-- 상세페이지로 이동 -->
 											<img src="../products-img/product-${ i.index }.jpg" alt="" class="thumbnail">
 											<div class="product-description text-left">
 												<p class="title">여성의류${ i.index }</p>
