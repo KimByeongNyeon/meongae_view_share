@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="상품명, 상점명 입력">
                         </div>
-                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                        <button type="button" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
             </div>

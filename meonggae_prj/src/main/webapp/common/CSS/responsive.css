@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 768px) { 
     .navbar-header {
@@ -219,6 +220,18 @@
     }
     .no-padding{
 		padding-bottom: 20px !important;
+	}
+	.single-products{
+    	grid-template-columns: repeat(3, 1fr);
+	}
+	.product-block img.thumbnail {
+    	width: 200px;
+	}
+	.thumb-main-image{
+		margin-bottom: 30px;
+	}
+	.product-info-status{
+		padding: 100px 20px 30px 20px;
 	}
 }
 /* Medium devices (desktops, 992px and up) */
