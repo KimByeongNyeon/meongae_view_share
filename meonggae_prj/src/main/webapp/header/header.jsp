@@ -4,8 +4,7 @@
     <div class="container">
         <div class="action pull-right">
             <ul>
-                <li class="login"><a href="javascript:void(0);" class="login-btn"><i class="fa fa-user"></i> 로그인</a></li>
-                <li class="join"><a href="javascript:void(0);" class="login-btn"><i class="fa fa-lock"></i> 회원가입</a></li>
+                <li class="login"><a href="javascript:void(0);" class="login-btn"><i class="fa fa-user"></i> 로그인 / 회원가입</a></li>
             </ul>
         </div>
     </div>

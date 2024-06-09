@@ -23,7 +23,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" type="text/css">
 <!-- Theme Stylesheet -->
 <script src ="../common/JS/script.js"></script>
-<script src ="../common/JS/eventJS.js"></script>
 <link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/style.css">
 <link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/responsive.css">
 </head>
@@ -33,23 +32,31 @@
 <!-- header 끝 -->
 <div class="container">
 	<div class="row">
-		<div class="products_categoryNavigation">
-			<span>전체</span> 
-			<span> > </span> 
-			<select id="proCate-parent" name="proCate-parent">
-				<option value="여성의류">여성의류</option>
-				<option value="남성의류">남성의류</option>
-				<option value="신발">신발</option>
-				<option value="가방/지갑">가방/지갑</option>
-				<option value="스타굿즈">스타굿즈</option>
-			</select> 
-			<span> > </span> 
-			<select id="proCate-child" name="proCate-child">
-				<option value="상의">상의</option>
-				<option value="바지">바지</option>
-				<option value="치마">치마</option>
-				<option value="원피스">원피스</option>
-			</select>
+		<div class="search_categoryNavigation">
+			<%
+    			String[] list = {"여성의류", "남성의류", "신발", "가방/지갑", "스타굿즈", "여성의류", "남성의류", "신발", "가방/지갑",
+       							 "스타굿즈", "여성의류", "남성의류", "신발", "가방/지갑", "스타굿즈"};
+				String[] list2 = {"인기카테1","인기카테2","인기카테3"};
+   				pageContext.setAttribute("list", list);
+   				pageContext.setAttribute("list2", list2);
+			%>
+			<div class="p-css">
+				<p>카테고리</p>
+				<div class="category-fav">
+					<c:forEach items="${list2}" var="item2" varStatus="i">
+						<div class="category-fav-item">
+							<a class="category-one2">> ${item2}</a>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="category-nomal">
+				<c:forEach items="${list}" var="item" varStatus="i">
+					<div class="category-item">
+						<a class="category-one">> ${item}</a>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>

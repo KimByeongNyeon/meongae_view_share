@@ -233,6 +233,9 @@
 	.product-info-status{
 		padding: 100px 20px 30px 20px;
 	}
+	.products_categoryNavigation {
+		margin: 30px 16px 0 16px;
+	}
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1200px) { 

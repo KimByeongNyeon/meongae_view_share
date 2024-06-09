@@ -1,40 +1,133 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    info="멍개장터 회원가입"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>멍게장터</title>
-<link rel="icon" href="../common/tamcatIcon.ico"/>
+    info="회원가입 페이지"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    <style type="text/css">
+        .agree {
+            height: 150px;
+            border: 1px solid black;
+            overflow-y: scroll; /* y축으로 오버플로우 되는 것을 scroll방식으로 바꾸는 것 */    
+        }
+        .chkAgree {
+            text-align: right;
+            background-color: #F1F3F5;
+            padding-top: 4px;  
+        }
+        th { vertical-align: middle; }
+        .space {
+            width: 5px;
+            height: auto;
+            display: inline-block; 
+        }
+        .space2 {
+            width: 25px;
+            height: auto;
+            display: inline-block; 
+        }
+        .writeForm_btn{ padding-bottom: 10px; }
+        
+        .writeForm_btn .btn{ width: 150px; }
+    </style>
 
-<!-- jQuery CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+        	//아이디 유효성검사
+            $("#idChk").click(function(){
+            	var id=document.frm.id.value;
+            	var reg = /^[A-z0-9]{5,12}$/;//영문/숫자 5~12자 이내인지 확인
+            	if( id == "" ){
+            		alert("아이디를 영문, 숫자 5~12자 이내로 입력해주세요.");
+            		return;
+            	} else if( !reg.test(id) ){
+            		alert("아이디를 영문, 숫자 5~12자 이내로 입력해주세요.");
+            		$("#id").val('');
+            		$("#id").focus();
+            		return;
+            	} else {
+        			window.open("../join_page/id_dup.jsp?id="+id, "idDup", "width=472, height=350, top="+
+        			(window.screenY+203)+", left="+(window.screenX+306));
+            	}
+            });
+            
+        	//비밀번호 유효성 검사
+            $('#password2').focusout(function(){
+        		var pass=document.frm.password.value;
+        		var pass2=document.frm.password2.value;
+        		var reg = /^[A-z0-9]{5,12}$/;
+            	if( pass != pass2 ) {
+        			alert('비밀번호가 다릅니다');
+        			$("#password").val('');
+        			$("#password2").val('');
+        			$("#password").focus();
+        		}else if( !reg.test(pass) ){
+        			alert("비밀번호를 영문, 숫자 5~12자 이내로 입력해주세요.");
+        			$("#password").val('');
+        			$("#password2").val('');
+        			$("#password").focus();
+        		}
+            });
+        
+            //닉네임 유효성 검사
+            $("#nickChk").click(function(){
+            	var nick=document.frm.nick.value;
+            	var ko_reg = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,12}$/;//한글/영문/숫자 1~12자 이내인지 확인
+            	if( nick == "" ){
+            		alert("닉네임을 한글, 영문, 숫자 1~12자 이내로 입력해주세요.");
+            		$("#nick").focus();
+            		return;
+            	} else {
+        			window.open("../join_page/nick_dup.jsp?nick="+nick, "nickDup", "width=472, height=350, top="+
+        			(window.screenY+203)+", left="+(window.screenX+306));
+            	}
+            });
+            
+      		//입력 요소 유효성검사
+      		$("#btnsubmit").click(function(){
+      			var email1 = document.frm.email1.value;
+      			var email2 = document.frm.email2.value;
+      			var email = email1+"@"+email2;
+      			var emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+      			if(!$("#agree1").prop("checked")){
+      		        alert("회원가입약관에 체크해 주세요");
+      		        return;
+      		    }else if(!$("#agree2").prop("checked")){
+      		        alert("개인정보취급방침에 체크해 주세요");
+      		        return;
+      		    }else if($("#id").val() == ""){
+      				alert("아이디를 입력해주세요.");
+      				$("#id").focus();
+      			}else if($("#password").val() == "" || $("#password2").val() == ""){
+      				$("#password").val('');
+      				$("#password2").val('');
+      				alert("비밀번호를 입력해주세요.");
+      				$("#password").focus();
+      			}else if($("#name").val() == ""){
+      				alert("이름을 입력해주세요.");
+      				$("#name").focus();
+      			}else if($("#nick").val() == ""){
+      				alert("닉네임을 입력해주세요.");
+      				$("#nick").focus();
+      			}else if($("#email1").val() == "" || $("#email2").val() == ""){
+      				alert("이메일을 입력해주세요.");
+      				$("#email1").val('');
+      				$("#email2").val('');
+      				$("#email1").focus();
+      			}else if( !emailPattern.test(email) ){
+      				alert("이메일 형식이 맞지 않습니다.");
+      				$("#email1").val('');
+      				$("#email2").val('');
+      				$("#email1").focus();
+      			}else{
+      				var obj = document.frm;
+      				obj.submit();
+      			}
+      		});
+      		
+        });//ready
+    </script>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Raleway:400,300,500,700,600' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" type="text/css">
-<!-- Theme Stylesheet -->
-<script src ="../common/JS/script.js"></script>
-<script src ="../common/JS/eventJS.js"></script>
-<script src ="../common/JS/sign_up.js"></script>
-<link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/style.css">
-<link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/tab.css">
-<link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/sign_up.css">
-<link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/join.css">
-</head>
-<body>
-<!-- header 시작 -->
-<jsp:include page="../header/header.jsp" />
-<!-- header 끝 -->
-<div class="container" style="height:100%">
 <!-- 회원가입 시작 -->
     <form action="../join_page/mem_join_process.jsp" method="post" name="frm" id="frm">
         <!-- 이용약관 시작 -->
@@ -42,12 +135,12 @@
             <div>
                 <h5>제1장 총칙</h5>
                 <p>제1조 목적</p>
-                <p>이 약관은 멍게장터에서 제공하는 서비스 이용조건 및 절차에 관한 사항과 기타 필요한 사항을 멍게장터과(와) 이용자의 권리, 의미 및 책임사항 등을 규정함을 목적으로 합니다.</p>
+                <p>이 약관은 고속휴게소에서 제공하는 서비스 이용조건 및 절차에 관한 사항과 기타 필요한 사항을 고속휴게소과(와) 이용자의 권리, 의미 및 책임사항 등을 규정함을 목적으로 합니다.</p>
             </div>
             <div>
                 <h5>제2조 약관의 효력과 변경</h5>
                 <p>(1) 이 약관은 이용자에게 공시함으로서 효력이 발생합니다.</p>
-                <p>(2) 멍게장터는 사정 변경의 경우와 영업상 중요사유가 있을 때 약관을 변경할 수 있으며, 변경된 약관은 전항과 같은 방법으로 효력이 발생합니다.</p>
+                <p>(2) 고속휴게소는 사정 변경의 경우와 영업상 중요사유가 있을 때 약관을 변경할 수 있으며, 변경된 약관은 전항과 같은 방법으로 효력이 발생합니다.</p>
             </div>
             <div>
                 <h5>제3조 약관 외 준칙</h5>
@@ -56,14 +149,14 @@
             <div>
                 <h5>제2장 회원 가입과 서비스 이용</h5>
                 <p>제1조 회원의 정의</p>
-                <p>회원이란 멍게장터에서 회원으로 적합하다고 인정하는 일반 개인으로 본 약관에 동의하고 서비스의 회원가입 양식을 작성하고 'ID'와 '비밀번호'를 발급받은 사람을 말합니다.</p>
+                <p>회원이란 고속휴게소에서 회원으로 적합하다고 인정하는 일반 개인으로 본 약관에 동의하고 서비스의 회원가입 양식을 작성하고 'ID'와 '비밀번호'를 발급받은 사람을 말합니다.</p>
                 <p>제2조 서비스 가입의 성립</p>
-                <p>(1) 서비스 가입은 이용자의 이용신청에 대한 멍게장터의 이용승낙과 이용자의 약관내용에 대한 동의로 성립됩니다.</p>
-                <p>(2) 회원으로 가입하여 서비스를 이용하고자 하는 희망자는 멍게장터에서 요청하는 개인 신상정보를 제공해야 합니다.</p>
-                <p>(3) 이용자의 가입신청에 대하여 멍게장터에서 승낙한 경우, 멍게장터는 회원 ID와 기타 멍게장터에서 필요하다고 인정하는 내용을 이용자에게 통지합니다.</p>
+                <p>(1) 서비스 가입은 이용자의 이용신청에 대한 고속휴게소의 이용승낙과 이용자의 약관내용에 대한 동의로 성립됩니다.</p>
+                <p>(2) 회원으로 가입하여 서비스를 이용하고자 하는 희망자는 고속휴게소에서 요청하는 개인 신상정보를 제공해야 합니다.</p>
+                <p>(3) 이용자의 가입신청에 대하여 고속휴게소에서 승낙한 경우, 고속휴게소는 회원 ID와 기타 고속휴게소에서 필요하다고 인정하는 내용을 이용자에게 통지합니다.</p>
                 <p>(4) 가입할 때 입력한 ID는 변경할 수 없으며, 한 사람에게 오직 한 개의 ID가 발급됩니다.</p>
             </div>
-            <p>이 약관은 2024년 06월 3일 시행합니다.</p>
+            <p>이 약관은 2024년 04월 22일 시행합니다.</p>
         </div>
         <div class="chkAgree">
             <p><input type="checkbox" id="agree1" checked="checked" required> 회원가입약관에 동의합니다.</p>
@@ -71,18 +164,19 @@
         <div class="space"></div>
         <div class="agree">
             <h5>[개인정보 수집에 대한 동의]</h5>
-            <p>멍게장터는 귀하께 회원가입시 개인정보보호방침 또는 이용약관의 내용을 공지하며 회원가입버튼을 클릭하면 개인정보 수집에 대해 동의하신 것으로 봅니다.</p>
+            <p>고속휴게소는 귀하께 회원가입시 개인정보보호방침 또는 이용약관의 내용을 공지하며 회원가입버튼을 클릭하면 개인정보 수집에 대해 동의하신 것으로 봅니다.</p>
 
             <h5>[개인정보의 수집목적 및 이용목적]</h5>
-            <p>멍게장터는 다음과 같은 목적을 위하여 개인정보를 수집하고 있습니다.</p>
+            <p>고속휴게소는 다음과 같은 목적을 위하여 개인정보를 수집하고 있습니다.</p>
             <ul>
                 <li>서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산 목적</li>
                 <li>회원 관리</li>
                 <li>마케팅 및 광고에 활용</li>
+                <li>고용보험 과정의 고용노동부 신고</li>
             </ul>
 
             <h5>[수집하는 개인정보 항목]</h5>
-            <p>멍게장터는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
+            <p>고속휴게소는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
             <p>- 수집항목: 이름, 생년월일, 성별, 로그인 ID, 비밀번호, 자택 전화번호, 자택 주소, 휴대전화번호, 이메일</p>
 
             <h5>[개인정보의 보유기간 및 이용기간]</h5>
@@ -166,6 +260,5 @@
         </div>
         <!-- 확인&취소 버튼 끝 -->
     </form>
-</div>
 <!-- 회원가입 끝 -->
 

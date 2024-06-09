@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 	//검색버튼 클릭
 	$("#search-btn").click(function(){
-		location.href="search_contents.jsp";
+		location.href="../main_page/search_contents.jsp";
 	});
 	
 	//카테고리 토글
