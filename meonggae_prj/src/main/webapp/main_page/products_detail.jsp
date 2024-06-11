@@ -22,7 +22,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" type="text/css">
 <!-- Theme Stylesheet -->
 <script src ="../common/JS/script.js"></script>
-<script src ="../common/JS/eventJS.js"></script>
 <link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/style.css">
 <link rel="stylesheet" href="http://localhost/meonggae_prj/common/CSS/responsive.css">
 </head>
